@@ -1,0 +1,35 @@
+{% extends "Session/base.html"%}
+
+{% block content %}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Title</td>
+            <td>Data</td>
+            <td>Application</td>
+
+            <td><a class="btn btn-outline-success" href="{% url 'session_insert' %}">Add Interview</a></td>
+        </tr>
+    </thead>
+    <body>
+        {% for interview in interviews%}
+        <tr>
+            <td>{{interview.title}}</td>
+            <td>{{interview.date}}</td>
+            <td>{{interview.application}}</td>
+
+
+            <td>
+                <a href="{% url 'interview_update' interview.id %}" class="btn btn-success ">Update</a>
+                <form action="{% url 'interview_delete' interview.id %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+
+            </td>
+
+        </tr>
+        {% endfor %}
+    </body>
+</table>
+{% endblock content %}

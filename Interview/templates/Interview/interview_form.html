@@ -1,0 +1,17 @@
+{% extends "Interview/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+<p>Please give the date as "yyyy-mm-dd"</p>
+<form action="" method="POST" autocomplete="off">
+    {% csrf_token %}
+    {{form}}
+
+
+<br>
+    <button class="btn btn-success">Submit</button>
+    </form>
+
+<a class="btn btn-outline-success mt-5" href="{% url 'interview' %}">View Interviews</a>
+
+
+{% endblock content %}

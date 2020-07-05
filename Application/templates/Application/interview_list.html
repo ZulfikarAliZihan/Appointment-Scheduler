@@ -1,0 +1,31 @@
+{% extends "Application/base.html"%}
+
+{% block content %}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Name</td>
+            <td>Actions</td>
+            <td><a class="btn btn-outline-success" href="{% url 'application_insert' %}">Add Interview</a></td>
+        </tr>
+    </thead>
+    <body>
+        {% for interview in interviews%}
+        <tr>
+            <td>{{interview.name}}</td>
+
+
+            <td>
+                <a href="{% url 'interview_update' interview.id %}" class="btn btn-success ">Update</a>
+                <form action="{% url 'interview_delete' interview.id %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+
+            </td>
+
+        </tr>
+        {% endfor %}
+    </body>
+</table>
+{% endblock content %}
